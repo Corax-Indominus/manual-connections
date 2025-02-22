@@ -4,9 +4,51 @@
 
 2. Get Scripts:
   1) Fork https://github.com/pia-foss/manual-connections
-  2) Clone github to vscode
+  2) Clone github to vscode in WSL locations, e.g.: \\wsl.localhost\Ubuntu\home\*choose a location*
 
+3. Get required packages
+  1) Update get-apt:
+      sudo apt-get update
+  2) Install packages dos2unix; wireguard-tools; jq
+      sudo apt-get install dos2unix
+      sudo apt-get install wireguard-tools
+      sudo apt-get install jq
 
+4. Prepare script execution:
+  1) Set file access for scripts in the location; e.g.: sudo chmod 777 \\wsl.localhost\Ubuntu\home\*choose a location*
+  2) Set execution rights on the individual scripts; e.g.: sudo chmod +x connect_to_wireguard_with_token.sh
+  3) Convert scripts to UNIX using "dos2unix" application; e.g.: sudo dos2unix port_forwarding.sh
+
+5. Set script to output a config file in stead of connecting:
+  In "connect_to_wireguard_with_token.sh" change "${PIA_CONNECT=true}" to "${PIA_CONNECT=false}" (currently on line 52)
+
+6. Generate config file by running run_setup.sh:
+    1) sudo bash run_setup.sh
+    2) Enter the requested settings.
+        Username: see 1PW
+        PW: see 1PW
+        Dedicated IP: No
+        Forwarding Port: No
+        Disable IPv6: Yes
+        Manually select server: Depends on needs.
+        Connection Method: Wireguard (usually)
+        Force PIA DNS: Yes
+
+  The config file should be output to e.g.: \\wsl.localhost\Ubuntu\etc\wireguard\
+
+7. Add /32 to the IP address line in the config file; e.g.: Address = 10.29.166.217/32
+
+  Example of functional config file:
+
+      [Interface]
+      Address = 10.29.166.217/32
+      PrivateKey = CGHEMVyCo1qE3lUqbfaR29W0fFfUiP9S7fI1RefBb3o=
+      DNS = 10.0.0.243
+      [Peer]
+      PersistentKeepalive = 25
+      PublicKey = 5nwWi8BfDcvt/KM+IIoSBY2giogiITNcWyMjsEvd4j8=
+      AllowedIPs = 0.0.0.0/0
+      Endpoint = 143.244.41.217:1337
 
 # Manual PIA VPN Connections
 
