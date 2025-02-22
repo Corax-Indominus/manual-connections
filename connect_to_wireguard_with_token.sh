@@ -49,7 +49,7 @@ if [[ -t 1 ]]; then
   fi
 fi
 
-: "${PIA_CONNECT=true}"
+: "${PIA_CONNECT=false}"
 
 DEFAULT_PIA_CONF_PATH=/etc/wireguard/pia.conf
 : "${PIA_CONF_PATH:=$DEFAULT_PIA_CONF_PATH}"

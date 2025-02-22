@@ -1,3 +1,13 @@
+## Vulkan's Vault Config
+
+1. Set up WSL.
+
+2. Get Scripts:
+  1) Fork https://github.com/pia-foss/manual-connections
+  2) Clone github to vscode
+
+
+
 # Manual PIA VPN Connections
 
 This repository contains documentation on how to create native WireGuard and OpenVPN connections, and also on how to enable Port Forwarding in case you require this feature. You will find a lot of information below. However if you prefer quick test, here is the __TL/DR__:
